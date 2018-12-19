@@ -1,0 +1,22 @@
+@startuml
+
+package 集約 {
+  class Foo<<(E, pink)>>
+  Foo o-- FooInner
+
+  class FooInner<<(V, lightgreen)>>
+  FooInner o-- FooInnerChild
+
+  class FooInnerChild<<(V, lightgreen)>>
+}
+
+class FooFactory {
+  + Foo DefaultFoo()
+}
+FooFactory --> "生成" Foo
+
+class Client
+Client --> FooFactory
+
+@enduml
+

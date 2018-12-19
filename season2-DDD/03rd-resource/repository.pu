@@ -1,0 +1,16 @@
+@startuml
+
+package 集約 {
+  class Foo<<(E, pink)>>
+}
+
+class FooRepository {
+  + list<Foo> FindByValue(string)
+}
+FooRepository --> "検索" Foo
+
+class Client
+Client --> FooRepository
+
+@enduml
+

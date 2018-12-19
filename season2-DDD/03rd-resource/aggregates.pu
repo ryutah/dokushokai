@@ -1,0 +1,39 @@
+@startuml
+
+note as N1 #aqua
+  正直納得がいっていない
+  ドメイン定義
+end note
+
+package 集約 {
+  class 車<<(E, pink)>>
+  車 o-- タイヤ
+  車 o-- 車輪
+  note right of 車
+    ルートエンティティ
+    * グルーバルな同一性
+    * 境界外部からの参照
+  end note
+
+  class タイヤ<<(V, lightgreen)>>
+  タイヤ -- 位置
+
+  class 位置<<(V, lightgreen)>>
+  位置 --> 車輪
+
+  class 車輪<<(V, lightgreen)>>
+}
+
+class エンジン<<(E, pink)>>
+エンジン -- 車
+
+class 顧客<<(E, pink)>>
+顧客 --> 車
+顧客 --> エンジン
+
+note right of 顧客
+  境界ルートである **車** と **エンジン**
+  に対して問い合わせが可能
+end note
+
+@enduml
